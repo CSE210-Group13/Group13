@@ -1,14 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daily Challenge</title>
+<link rel="stylesheet" href="../CSS/home.css">
 </head>
+
 <body>
-    <span>
-        "testing case"
-    </span>
+    <div class="header">
+        <div>
+          <img src="../assets/house-icon.png" alt="Home" width="30">
+          <img src="../assets/star-icon.png" alt="Points" width="30">
+          <span>0</span>
+        </div>
+        <nav>
+          <a href="#">History</a>
+          <a href="#">Signout</a>
+        </nav>
+      </div>
+      
+      <main>
+        <div class="challenge">
+          Daily Challenge
+          <p>Do 10 pushups</p>
+        </div>
+        <button onclick="markComplete()">Complete</button>
+        <button onclick="refreshChallenge()">Refresh</button>
+      </main>
+      
+      <script src="../javascript/home.js"></script>
 </body>
 </html>
