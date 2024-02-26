@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
     // Get the form element
-    var form = document.getElementById("login-form");
+    var form = document.getElementById("signup-form");
 
     // Add submit event listener to the form
     form.addEventListener("submit", function(event) {
@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Function to submit the form
     function submitForm() {
         // Optionally, perform additional tasks before submitting the form
-        console.log("submitting login")
+        console.log("submitting signup")
         
         // Submit the form
         form.submit();
