@@ -18,6 +18,7 @@ class NavBar extends HTMLElement {
                     margin: 0;
                     height: 50px;
                     width: 100%;
+                    font-family: Arial, sans-serif;
                 }
                 
                 .nav-left {
