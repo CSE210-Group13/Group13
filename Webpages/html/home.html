@@ -4,11 +4,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <script src="../components/nav-bar.js" type = "module"></script>
+    <script src="../JS/home.js" type = "module"></script>
+    <script src = "../JS/js-confetti.browser.js"> </script>
+    <link rel="stylesheet" href="../CSS/home.css">
+    <title>Home</title>
 </head>
 <body>
-    <span>
-        "testing case"
-    </span>
+    <header>
+        <nav-bar></nav-bar>
+    </header>
+    
+    <div class="main">
+        <a class="caption"> Challange of Today: </a>
+        <a class="challange"> do 10 pushups</a>
+        <div class="buttons">
+            <button class="refresh button" id="refresh">Refresh</button>
+            <button class="finish button" id="finish">Finish</button>
+        </div>
+    </div>
 </body>
 </html>
