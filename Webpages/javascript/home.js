@@ -1,5 +1,5 @@
 import "./js-confetti.browser.js"
-import { finish } from "./db.js";
+import { LOCAL_STORAGE_USER_KEY, finish, get_current_challenge, get_last_refresh, update_current_challenge_refresh } from "./db.js";
 
 const confetti = new JSConfetti();
 const refresh_button = document.querySelector("#refresh");
@@ -46,14 +46,6 @@ function get_random_challenge() {
   return { index: random_index, challenge: random_challenge };
 }
 
-function populate_random_challenge() {
-  if (localStorage.getItem("get_random_boolean") === true) {
-    const random_challenge = get_random_challenge();
-    challenge.innerHTML = random_challenge.challenge;
-  }
-  localStorage.setItem("get_random_boolean", false);
-}
-
 function get_different_challenge() {
   let cur_challenge = challenge.innerHTML;
   let index = challenges_arr.indexOf(cur_challenge);
@@ -66,11 +58,44 @@ function get_different_challenge() {
   return random_challenge.challenge;
 }
 
-window.onload = populate_random_challenge;
+/*
+ * Called when page loads
+ * Gets current_challenge and last_refresh and checks if last_refresh is outdated
+ * last_refresh is outdated if before 2am on current day, as that is when
+ * all challenges should refresh
+ * if not outdated, simply set challenge text to current_challenge
+ * if outdated, get new challenge and update database to reflect
+ */
+async function populate_challenge() {
+  let username = localStorage.getItem(LOCAL_STORAGE_USER_KEY);
+  username = 'han';
+  let last_refresh = await get_last_refresh(username);
+  let current_challenge = await get_current_challenge(username);
+  console.log(last_refresh);
+  console.log(current_challenge);
+  let today_refresh_time = new Date();
+  today_refresh_time.setHours(2,0,0,0);
+  today_refresh_time = today_refresh_time.getTime();
+  console.log("today_refresh_time: " + today_refresh_time);
+  let challenge_text = document.getElementById('challenge_text');
 
-refresh_button.addEventListener("click", () => {
+  if (last_refresh > today_refresh_time){
+    challenge_text.innerText = current_challenge;
+  }
+  else {
+    challenge_text.innerText = get_different_challenge();
+    await update_current_challenge_refresh(username, challenge_text.innerText);
+  }
+}
+
+
+
+refresh_button.addEventListener("click", async () => {
   const refreshed_challenge = get_different_challenge();
   challenge.innerHTML = refreshed_challenge;
+  let username = localStorage.getItem(LOCAL_STORAGE_USER_KEY);
+  username = 'han';
+  await update_current_challenge_refresh(username, challenge.innerHTML)
 });
 
 finish_button.addEventListener("click", () => {
@@ -99,6 +124,13 @@ finish_button.addEventListener("click", () => {
   }
 });
 
+/* When the user logs in, we check last_refresh and current_challenge
+If last refresh was before our daily refresh,
+we can choose a new random current_challenge
+Otherwise, the user has already asked for a new challenge
+and we should keep displaying the current_challenge
+*/
+window.onload = populate_challenge;
 // test on the go:
 // const randomChallenge = get_random_challenge();
 // console.log("Random challenge:", randomChallenge);
