@@ -52,6 +52,9 @@ class NavBar extends HTMLElement {
                     height: 30px;
                     width: auto;
                 }
+                #current-user {
+                  margin-left: 10px; 
+                }                
             </style>
             <div class="nav-bar">
                 <div class="nav-left">
@@ -60,6 +63,7 @@ class NavBar extends HTMLElement {
                     </a>
                     <a id="stars" class="stars count">0</a>
                     <img src="../images/stars.svg" alt="Stars SVG Image">
+                    <span id="current-user"></span>
                 </div>
                 <div class="nav-right">
                     <a id="streaks" class="strikes count">0</a>
@@ -118,28 +122,28 @@ class NavBar extends HTMLElement {
   }
 
   hide_stars() {
-    var starsElement = document.getElementById('stars');
+    var starsElement = this.shadowRoot.querySelector('#stars');
     if (starsElement) {
       starsElement.style.display = 'none'; // This hides the stars element
     }
   }
   
   hide_streaks() {
-    var streaksElement = document.getElementById('streaks');
+    var streaksElement = this.shadowRoot.querySelector('#streaks');
     if (streaksElement) {
       streaksElement.style.display = 'none'; // This hides the streaks element
     }
   }
 
   show_stars() {
-    var starsElement = document.getElementById('stars');
+    var starsElement = this.shadowRoot.querySelector('#stars');
     if (starsElement) {
       starsElement.style.display = ''; // Resets the display property
     }
   }
   
   show_streaks() {
-    var streaksElement = document.getElementById('streaks');
+    var streaksElement = this.shadowRoot.querySelector('#streaks');
     if (streaksElement) {
       streaksElement.style.display = ''; // Resets the display property
     }
@@ -148,6 +152,12 @@ class NavBar extends HTMLElement {
   connectedCallback() {
     // This method is called when the element is inserted into the DOM
     console.log('Element connected to the DOM');
+
+    if (!this.isLoginPage()) {
+      var current_user = this.shadowRoot.querySelector("#current-user");
+      console.log('Current user:', current_user);
+      current_user.innerHTML = localStorage.getItem('uuid');
+    }
 
     // todo connect to database to do proper logic
     (async () => {

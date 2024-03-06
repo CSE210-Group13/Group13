@@ -4,12 +4,15 @@ export const LOCAL_STORAGE_USER_KEY = 'uuid';
 async function populateHistory(username) {
     var username = localStorage.getItem(LOCAL_STORAGE_USER_KEY);
     const data = await get_history_by_user(username);
-
+    
     // Assuming data is an object or array you want to display
     // Find the container in your HTML where you want to display the data
     const container = document.getElementById('challenge-containers');
     container.innerHTML = ''; // Clear existing contents
-
+    if (!data) {
+        container.innerHTML = 'No challenges found';
+        return;
+    }
 
     let renderedChallenges = ''
 
