@@ -1,4 +1,5 @@
 import { get_history_by_user } from '../javascript/db.js';
+import { get_current_streak } from '../javascript/db.js';
 
 class NavBar extends HTMLElement {
   constructor() {
@@ -110,7 +111,17 @@ class NavBar extends HTMLElement {
 
     // todo connect to database to do proper logic
     this.set_stars(7); 
-    this.set_strikes(8); 
+    (async () => {
+      try {
+        const streak = await get_current_streak();
+        console.log('Current streak is:', streak);
+        this.set_strikes(streak);
+      } catch (error) {
+        // console.error('An error occurred:', error);
+        this.set_strikes(0);
+      }
+    })();
+    // this.set_strikes(streak); 
 
     const historyButton = this.shadowRoot.getElementById('history');
 
