@@ -1,16 +1,18 @@
-export const LOCAL_STORAGE_USER_KEY = 'uuid';
+import {login} from "../javascript/authen.js"
+const LOCAL_STORAGE_USER_KEY = 'uuid';
 
 document.addEventListener("DOMContentLoaded", function() {
     // Get the form element
-    var form = document.getElementById("login-form");
+    var button = document.querySelector(".login-btn");
     var username = document.getElementById("username");
-
+    var password = document.getElementById("password"); 
     // Add submit event listener to the form
-    form.addEventListener("submit", function(event) {
-        event.preventDefault(); // Prevent default form submission
+    button.addEventListener("click", function(e) {
+        e.preventDefault(); // Prevent default form submission
         
         // Perform any client-side validation or other operations here
-        
+        console.log(username.value); 
+        console.log(password.value); 
         // Submit the form
         submitForm();
     });
