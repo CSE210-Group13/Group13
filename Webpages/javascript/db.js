@@ -6,7 +6,7 @@ export async function finish(challenge_name) {
     var username = localStorage.getItem(LOCAL_STORAGE_USER_KEY)
     var url = 'https://cse210-group13-default-rtdb.firebaseio.com/users/' + username + '/challenges.json'
     // var url = 'https://cse210-group13-default-rtdb.firebaseio.com/users/han/challenges.json'
-    fetch(url, {
+    await fetch(url, {
       method: 'POST', // or 'PUT'
       headers: {
         'Content-Type': 'application/json',
@@ -25,12 +25,15 @@ export async function finish(challenge_name) {
       });
 
       try {
-        const streak = await get_current_streak();
+        let {streak, stars} = await get_current_streak_stars();
         console.log('Current streak is:', streak);
-        nav_bar_element.set_strikes(streak);
+        console.log('Current stars is ', stars);
+        nav_bar_element.set_streak(streak);
+        nav_bar_element.set_stars(stars);
       } catch (error) {
         // console.error('An error occurred:', error);
-        nav_bar_element.set_strikes(0);
+        nav_bar_element.set_streak(0);
+        nav_bar_element.set_stars(0);
       }
   }
 
@@ -60,7 +63,6 @@ export async function get_current_streak_stars() {
   
     let currentStreak = 0;
     let currentDate = new Date();
-  
     let mostRecentChallenge = new Date(challenges[0].timestamp);
     let challengeDoneToday = currentDate.getMonth() === mostRecentChallenge.getMonth() &&
     currentDate.getDate() === mostRecentChallenge.getDate() &&
