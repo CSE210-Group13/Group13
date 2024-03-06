@@ -1,8 +1,8 @@
 export const LOCAL_STORAGE_USER_KEY = 'uuid';
 const nav_bar_element = document.querySelector("nav-bar");
 
-export async function finish(challange_name) {
-    console.log("challenge_name: ", challange_name);
+export async function finish(challenge_name) {
+    console.log("challenge_name: ", challenge_name);
     console.log("username: ", localStorage.getItem(LOCAL_STORAGE_USER_KEY));
     // localStorage.setItem(LOCAL_STORAGE_USER_KEY, "han");
     var username = localStorage.getItem(LOCAL_STORAGE_USER_KEY)
@@ -14,7 +14,7 @@ export async function finish(challange_name) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        name: challange_name,
+        name: challenge_name,
         timestamp: new Date().getTime(),
       }),
     })
@@ -38,7 +38,6 @@ export async function finish(challange_name) {
 
 
 export async function get_history_by_user(username) {
-    console.log("username: ", username);
     var url = 'https://cse210-group13-default-rtdb.firebaseio.com/users/' + username + '/challenges.json'
     return fetch(url)
       .then(response => {
@@ -48,12 +47,11 @@ export async function get_history_by_user(username) {
         return response.json();
       })
       .then(data => {
-        console.log('Success:', data);
         return data;  
       })
       .catch((error) => {
         console.error('Error:', error);
-        return null;  // Return null to indicate an error or an empty state
+        return [];  // Return null to indicate an error or an empty state
       });
 }
 
