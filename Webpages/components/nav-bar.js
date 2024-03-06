@@ -62,7 +62,7 @@ class NavBar extends HTMLElement {
                     <a class="strikes count">1</a>
                     <img src="../images/flame-icon.svg" alt="Flame Icon SVG Image">
                     <a href="history.html">History</a>
-                    <a class="login-signup" href="login.html">Login/Signup</a>
+                    <a class="login-signup" href="login.html">Logout</a>
                 </div>
             </div>
         `;
