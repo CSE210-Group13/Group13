@@ -1,5 +1,6 @@
 import "./js-confetti.browser.js"
 import { finish } from "./db.js";
+import { get_current_streak_stars } from "./db.js";
 
 const confetti = new JSConfetti();
 const refresh_button = document.querySelector("#refresh");
@@ -14,7 +15,7 @@ console.log(challenge.innerHTML);
 
 const nav_bar_element = document.querySelector("nav-bar");
 // console.log(nav_bar_element);
-// nav_bar_element.increment_strikes();
+// nav_bar_element.increment_streaks();
 // console.log(nav_bar_element.get_stars_element());
 
 // nav_bar_element.set_stars('100');
@@ -73,11 +74,12 @@ refresh_button.addEventListener("click", () => {
   challenge.innerHTML = refreshed_challenge;
 });
 
-finish_button.addEventListener("click", () => {
+finish_button.addEventListener("click", async () => {
   if (finish_button.classList.contains("finish")) {
+    var challenge_name = challenge.innerHTML;
     challenge.innerHTML = "Congrats, you have finished the challenge";
     nav_bar_element.increment_stars();
-    nav_bar_element.increment_strikes();
+    // nav_bar_element.increment_streaks();
 
     finish_button.classList.remove("finish");
     
