@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Home</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <!-- partial:index.partial.html -->
+    <html>
+      <head>
+        <style>
+          input::-webkit-outer-spin-button,
+          input::-webkit-inner-spin-button {
+            display: none;
+          }
+        </style>
+      </head>
+
+      <body>
+        <header>
+          <div class="achievement-container">
+            <p id="space">&nbsp</p>
+            <img class="hide-on-small-only" src="star.svg" alt="user" />
+            <p id="star-amount">3</p>
+            <p id="space">&nbsp&nbsp</p>
+            <img class="hide-on-small-only" src="flame-icon.svg" alt="strike" />
+            <p id="strike-amount">0</p>
+            <p id="space">&nbsp</p>
+          </div>
+          <div class="header-title">Home</div>
+          <div id="help">
+            <img
+              id="img1"
+              class="hide-on-small-only"
+              src="user-avatar.svg"
+              alt="user"
+            />
+          </div>
+        </header>
+        <div class="challenge-container">
+          <div class="challenge-card">
+            <div class="challenge-title">Daily Challenge</div>
+            <div class="challenge-detail">Do 10 Pushups</div>
+            <div class="challenge-icon">🏋️</div>
+          </div>
+        </div>
+
+        <div id="refresh-bonus">
+          <div id="bonus">
+            <p id="bonus-text">Bonus</p>
+          </div>
+          <p>&nbsp&nbsp&nbsp&nbsp</p>
+          <div id="refresh">
+            <img
+              id="img1"
+              class="hide-on-small-only"
+              src="available_updates.svg"
+              alt="refresh"
+            />
+          </div>
+        </div>
+
+        <div class="challenge-container">
+          <div id="Complete">
+            <img
+              id="img1"
+              class="hide-on-small-only"
+              src="capture.svg"
+              alt="refresh"
+            />
+            <p class="Complete-text">Complete</p>
+            <p class="Complete-text">& Share</p>
+          </div>
+        </div>
+
+        <section id="product-list"></section>
+
+        <nav>
+          <div class="shoppingcart">
+            <a
+              href="https://en.wikipedia.org/w/index.php?title=Wikipedia&banner=S2324_1006_en6C_dsk_p1_lg_control&utm_source=AfC_Grants_Fundraising_Wikipedia_US_Brand_160750986692&utm_key=wikipedia&utm_medium=google&utm_campaign=C2324_social&country=AU&gclid=CjwKCAiA1MCrBhAoEiwAC2d64YcZRjxGtcVCZ4ScET0aifgKTujsP0p8DE_m6RQ_i2MLjXgsTSr1fBoCMtgQAvD_BwE"
+              ><img
+                id="img1"
+                class="hide-on-small-only"
+                src="history.svg"
+                alt="cart"
+              />
+              <p id="navtext">History</p>
+            </a>
+          </div>
+
+          <div class="Store" id="select-section">
+            <img
+              id="img1"
+              class="hide-on-small-only"
+              src="home.svg"
+              alt="store"
+            />
+            <p id="navtextselect">Store</p>
+          </div>
+        </nav>
+
+        <div id="deleteConfirmationModal" class="modal">
+          <div class="modal-content">
+            <p>Do you want to delete this item?</p>
+            <button id="deleteConfirmBtn">Delete</button>
+            <button class="close">Keep</button>
+          </div>
+        </div>
+
+        <div id="accessibilityHelpModal" class="modal">
+          <div class="modal-content">
+            <p>You will call Accessibility Help right away.</p>
+            <button id="helpConfirmBtn">Ask for Help</button>
+            <button class="close">Not Now</button>
+          </div>
+        </div>
+
+        <div id="HelpconfirmedModal" class="modal">
+          <div class="modal-content">
+            <p>You will call Accessibility Help right away.</p>
+          </div>
+        </div>
+
+        <script src="script.js"></script>
+      </body>
+    </html>
+    <!-- partial -->
+  </body>
+</html>

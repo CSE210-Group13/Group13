@@ -1,4 +1,5 @@
 import "./js-confetti.browser.js"
+import { finish } from "./db.js";
 
 const confetti = new JSConfetti();
 const refresh_button = document.querySelector("#refresh");
@@ -30,7 +31,7 @@ const challenges_arr = [
   "Eat at least 1 cup of fruits or vegetables",
   "Stretch for 10 minutes",
   "Do 10 pushups",
-  " Do 15 squats",
+  "Do 15 squats",
   "Do a 30 second plank",
   "Only drink water for one day",
   "Stay outside for 15 minutes",
@@ -79,6 +80,8 @@ finish_button.addEventListener("click", () => {
     nav_bar_element.increment_strikes();
 
     finish_button.classList.remove("finish");
+    
+    finish(challenge_name);
 
     finish_button.classList.add("more");
     finish_button.innerHTML = "More";

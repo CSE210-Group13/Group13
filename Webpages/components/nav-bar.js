@@ -1,3 +1,5 @@
+import { get_history_by_user } from '../javascript/db.js';
+
 class NavBar extends HTMLElement {
   constructor() {
     super();
@@ -61,8 +63,8 @@ class NavBar extends HTMLElement {
                 <div class="nav-right">
                     <a class="strikes count">1</a>
                     <img src="../images/flame-icon.svg" alt="Flame Icon SVG Image">
-                    <a href="history.html">History</a>
-                    <a class="login-signup" href="login.html">Logout</a>
+                    <a id="history" href="history.html">History</a>
+                    <a class="login-signup" href="login.html">Login/Signup</a>
                 </div>
             </div>
         `;
@@ -112,7 +114,20 @@ class NavBar extends HTMLElement {
     // todo connect to database to do proper logic
     this.set_stars(7); 
     this.set_strikes(8); 
-  }
-}
 
-customElements.define("nav-bar", NavBar);
+    const historyButton = this.shadowRoot.getElementById('history');
+
+    // Attach an event listener to the history button
+        historyButton.addEventListener('click', (event) => {
+          event.preventDefault(); // Prevent the default link behavior
+          console.log('History button clicked');
+          window.location.href = 'history.html';
+
+          
+        });
+      }
+
+      
+    }
+
+    customElements.define("nav-bar", NavBar);
