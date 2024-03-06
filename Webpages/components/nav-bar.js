@@ -1,5 +1,4 @@
-import { get_history_by_user, get_star } from '../javascript/db.js';
-import { get_current_streak } from '../javascript/db.js';
+import { get_history_by_user, get_current_streak_stars } from '../javascript/db.js';
 
 class NavBar extends HTMLElement {
   constructor() {
@@ -66,7 +65,7 @@ class NavBar extends HTMLElement {
                     <span id="current-user"></span>
                 </div>
                 <div class="nav-right">
-                    <a id="streaks" class="strikes count">0</a>
+                    <a id="streaks" class="streaks count">0</a>
                     <img src="../images/flame-icon.svg" alt="Flame Icon SVG Image">
                     <a id="history" href="history.html">History</a>
                     <a class="login-signup" href="login.html">Login/Signup</a>
@@ -76,16 +75,16 @@ class NavBar extends HTMLElement {
     const shadowRoot = this.attachShadow({ mode: "open" });
     shadowRoot.appendChild(template.content.cloneNode(true));
 
-    this.strikes_count_element = this.shadowRoot.querySelector(
-        ".nav-bar .nav-right .strikes"
+    this.streaks_count_element = this.shadowRoot.querySelector(
+        ".nav-bar .nav-right .streaks"
       );
     this.stars_count_element = this.shadowRoot.querySelector(
         ".nav-bar .nav-left .stars"
       );
   }
 
-  get_strikes_element(){
-    return this.strikes_count_element; 
+  get_streaks_element(){
+    return this.streaks_count_element; 
   }
 
   get_stars_element(){
@@ -96,12 +95,12 @@ class NavBar extends HTMLElement {
     this.stars_count_element.innerHTML = parseInt(num);
   }
 
-  set_strikes(num){
-    this.strikes_count_element.innerHTML = parseInt(num); 
+  set_streak(num){
+    this.streaks_count_element.innerHTML = parseInt(num); 
   }
 
-  increment_strikes() {
-    this.strikes_count_element.innerHTML = parseInt(this.strikes_count_element.innerHTML) + 1;
+  increment_streaks() {
+    this.streaks_count_element.innerHTML = parseInt(this.streaks_count_element.innerHTML) + 1;
   }
 
   increment_stars() {
@@ -112,79 +111,22 @@ class NavBar extends HTMLElement {
     console.log("test function from nav-bar");
   }
 
-  isLoginPage() {
-    const pathname = window.location.pathname;
-    console.log('Current pathname:', pathname)
-    // Check if the pathname matches the expected path for the login page
-    const loginPath = '/Webpages/html/login.html'; // The path to your login page
-
-    return pathname === loginPath;
-  }
-
-  hide_stars() {
-    var starsElement = this.shadowRoot.querySelector('#stars');
-    if (starsElement) {
-      starsElement.style.display = 'none'; // This hides the stars element
-    }
-  }
-  
-  hide_streaks() {
-    var streaksElement = this.shadowRoot.querySelector('#streaks');
-    if (streaksElement) {
-      streaksElement.style.display = 'none'; // This hides the streaks element
-    }
-  }
-
-  show_stars() {
-    var starsElement = this.shadowRoot.querySelector('#stars');
-    if (starsElement) {
-      starsElement.style.display = ''; // Resets the display property
-    }
-  }
-  
-  show_streaks() {
-    var streaksElement = this.shadowRoot.querySelector('#streaks');
-    if (streaksElement) {
-      streaksElement.style.display = ''; // Resets the display property
-    }
-  }
-
   connectedCallback() {
     // This method is called when the element is inserted into the DOM
     console.log('Element connected to the DOM');
 
-    if (!this.isLoginPage()) {
-      var current_user = this.shadowRoot.querySelector("#current-user");
-      console.log('Current user:', current_user);
-      current_user.innerHTML = localStorage.getItem('uuid');
-    }
-
     // todo connect to database to do proper logic
     (async () => {
       try {
-        if (!this.isLoginPage()) { 
-          const stars = await get_star();
-          console.log('Current stars is:', stars);
-          this.set_stars(stars);
-        } 
+        let {streak, stars} = await get_current_streak_stars();
+        this.set_stars(stars);
+        this.set_streak(streak);
       } catch (error) {
         // console.log('An error occurred:', error);
         this.set_stars(0);
+        this.set_streak(0);
       }
     })();
-    (async () => {
-      try {
-        if (!this.isLoginPage()) { 
-          const streak = await get_current_streak();
-          console.log('Current streak is:', streak);
-          this.set_strikes(streak);
-        } 
-      } catch (error) {
-        // console.error('An error occurred:', error);
-        this.set_strikes(0);
-      }
-    })();
-    // this.set_strikes(streak); 
 
     const historyButton = this.shadowRoot.getElementById('history');
 

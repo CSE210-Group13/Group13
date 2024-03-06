@@ -13,7 +13,7 @@ console.log(challenge.innerHTML);
 
 const nav_bar_element = document.querySelector("nav-bar");
 // console.log(nav_bar_element);
-// nav_bar_element.increment_strikes();
+// nav_bar_element.increment_streaks();
 // console.log(nav_bar_element.get_stars_element());
 
 // nav_bar_element.set_stars('100');
@@ -76,7 +76,7 @@ finish_button.addEventListener("click", () => {
   if (finish_button.classList.contains("finish")) {
     challenge.innerHTML = "Congretulations, you have finished the challenge";
     nav_bar_element.increment_stars();
-    nav_bar_element.increment_strikes();
+    nav_bar_element.increment_streaks();
 
     finish_button.classList.remove("finish");
 
