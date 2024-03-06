@@ -6,6 +6,10 @@ html {
   background-color: #ffffff;
 }
 
+:root {
+  --main-bg-color: rgba(241, 156, 121, 0.5);
+}
+
 a {
   text-decoration: none;
 }
@@ -51,26 +55,41 @@ header {
   margin-bottom: 25px;
 }
 .challenge-card {
-  background-color: rgba(241, 156, 121, 0.5);
-  width: 80vw; /* 80% of the viewport width */
-  height: 80vw; /* same value as width to maintain aspect ratio */
-  max-width: 350px; /* maximum size */
-  max-height: 350px; /* maximum size */
-
+  background-color: var(--main-bg-color);
+  width: 80vw;
+  height: 80vw;
+  max-width: 350px;
+  max-height: 350px;
   border-radius: 20px;
   box-sizing: border-box;
-  text-align: center;
+  text-align: left;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: left;
+  position: relative; /* Add this */
+  padding: 20px; /* Add padding for spacing */
 }
+
 .challenge-title {
   font-size: 24px;
-  margin-bottom: 20px;
+  position: absolute; /* Add this */
+  top: 20px; /* Adjust as needed */
+  left: 20px; /* Adjust as needed */
 }
-.challenge-icon {
-  font-size: 48px;
+
+.challenge-detail {
+  font-size: 30px;
+  position: absolute; /* Add this */
+  top: 50%; /* Position it in the middle vertically */
+  left: 20px; /* Adjust as needed */
+  transform: translateY(-50%); /* Center it vertically */
+}
+
+.challenge-card img {
+  position: absolute; /* Add this */
+  bottom: 20px; /* Adjust as needed */
+  left: 20px; /* Adjust as needed */
 }
 
 #switch {
@@ -88,11 +107,8 @@ header {
 }
 
 #bonus {
-  background-color: rgba(
-    241,
-    156,
-    121,
-    0.5
+  background-color: var(
+    --main-bg-color
   ); /* Change the background to selected color */
   color: black; /* Set the text color to black or any color you want */
   border-radius: 20px; /* Adjust as needed for the desired rounded effect */
@@ -104,11 +120,8 @@ header {
 }
 
 #refresh {
-  background-color: rgba(
-    241,
-    156,
-    121,
-    0.5
+  background-color: var(
+    --main-bg-color
   ); /* Change the background to selected color */
   color: black; /* Set the text color to black or any color you want */
   border-radius: 20px; /* Adjust as needed for the desired rounded effect */
@@ -118,7 +131,7 @@ header {
 }
 
 #Complete {
-  background-color: rgba(241, 156, 121, 0.5);
+  background-color: var(--main-bg-color);
   width: 80vw; /* 80% of the viewport width */
   height: 80vw; /* same value as width to maintain aspect ratio */
   max-width: 180px; /* maximum size */
@@ -243,11 +256,8 @@ nav {
 }
 
 #select-section {
-  background-color: rgba(
-    241,
-    156,
-    121,
-    0.5
+  background-color: var(
+    --main-bg-color
   ); /* Change the background to selected color */
   color: black; /* Set the text color to black or any color you want */
   border-radius: 12px; /* Adjust as needed for the desired rounded effect */

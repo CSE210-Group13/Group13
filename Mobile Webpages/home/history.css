@@ -1,0 +1,285 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: "Arial", sans-serif;
+  background-color: #ffffff;
+}
+
+:root {
+  --main-bg-color: rgba(241, 156, 121, 0.5);
+}
+
+a {
+  text-decoration: none;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: #fffaed;
+  align-items: center;
+}
+
+.achievement-container {
+  background-color: #d9d9d9; /* Change the background to selected color */
+  color: black; /* Set the text color to black or any color you want */
+  border-radius: 20px; /* Adjust as needed for the desired rounded effect */
+  /* Add padding to create space inside the rounded rectangle */
+
+  align-items: center; /* Center-aligns the items vertically */
+
+  display: flex;
+}
+
+#space {
+  line-height: 1px;
+}
+
+#star-amount {
+  line-height: 1px;
+}
+
+#strike-amount {
+  line-height: 1px;
+}
+
+.challenge-container {
+  margin: auto;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+.challenge-card {
+  background-color: var(--main-bg-color);
+  width: 90vw;
+  max-width: 900px;
+  height: 80vw;
+  max-height: 100px;
+  border-radius: 20px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 20px;
+  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.challenge-detail {
+  font-size: 30px;
+  margin-left: 10px;
+}
+
+.challenge-card img {
+}
+
+#switch {
+  width: 50px;
+  height: 50px;
+}
+#refresh-bonus {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#bonus-text {
+  line-height: 1px;
+}
+
+#bonus {
+  background-color: var(
+    --main-bg-color
+  ); /* Change the background to selected color */
+  color: black; /* Set the text color to black or any color you want */
+  border-radius: 20px; /* Adjust as needed for the desired rounded effect */
+  /* Add padding to create space inside the rounded rectangle */
+  height: 30px;
+  padding-left: 10px;
+  padding-right: 10px;
+  align-items: center;
+}
+
+#refresh {
+  background-color: var(
+    --main-bg-color
+  ); /* Change the background to selected color */
+  color: black; /* Set the text color to black or any color you want */
+  border-radius: 20px; /* Adjust as needed for the desired rounded effect */
+  /* Add padding to create space inside the rounded rectangle */
+
+  align-items: center;
+}
+
+#Complete {
+  background-color: var(--main-bg-color);
+  width: 80vw; /* 80% of the viewport width */
+  height: 80vw; /* same value as width to maintain aspect ratio */
+  max-width: 180px; /* maximum size */
+  max-height: 180px; /* maximum size */
+
+  border-radius: 20px;
+  box-sizing: border-box;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.Complete-text {
+  line-height: 2px;
+}
+
+#imgnfc {
+  width: 150px;
+  height: 150px;
+}
+
+#product-list {
+  width: 340px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* This will center the product items horizontally in the flex container */
+  margin: 0 auto; /* This will center #product-list itself horizontally within its parent */
+}
+
+.product-item {
+  width: 100%; /* Makes the product item take full width of the #product-list */
+  display: flex;
+  background-color: #dcd2b7;
+  margin: 10px 0; /* Adjust margin as needed */
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.product-item {
+  display: flex;
+  background-color: #dcd2b7;
+  margin: 10px 50px 10px 50px;
+
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.product-image {
+  width: 65px;
+  height: 65px;
+  margin: 10px;
+  border-radius: 12px;
+}
+
+.product-info {
+  justify-content: space-between;
+}
+
+.product-description {
+  flex-grow: 1;
+  font-weight: bold;
+}
+
+.product-pq {
+  font-size: 12px;
+}
+
+.product-price {
+  margin-top: -10px;
+  font-size: 12px;
+}
+
+.product-quantity-controls {
+  position: relative;
+  left: 150px;
+  margin-top: -10px;
+  margin-bottom: -100px;
+  display: flex;
+  align-items: center;
+}
+
+.quantity-btn {
+  padding: 0px 0px;
+  margin: 0 0px;
+
+  cursor: pointer;
+}
+
+.quantity-input {
+  width: 50px;
+  text-align: center;
+  font-size: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #ffe294;
+}
+
+nav {
+  display: flex;
+  justify-content: space-around;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding: 10px 0;
+  background-color: #fffaed;
+}
+
+#navtext {
+  font-size: 10px;
+  color: black;
+  text-decoration: none;
+  margin: 0px 0px 0px 0px;
+}
+
+#navtextselect {
+  font-size: 10px;
+  margin: 0px 0px 0px 0px;
+}
+
+#select-section {
+  background-color: var(
+    --main-bg-color
+  ); /* Change the background to selected color */
+  color: black; /* Set the text color to black or any color you want */
+  border-radius: 12px; /* Adjust as needed for the desired rounded effect */
+  padding: 0px 15%; /* Add padding to create space inside the rounded rectangle */
+
+  align-items: center; /* Center-aligns the items vertically */
+  justify-content: center; /* Centers the content horizontally */
+}
+
+.nav-icon {
+  font-size: 24px;
+}
+
+.active {
+  color: blue;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #fffaed;
+  border-radius: 12px;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}

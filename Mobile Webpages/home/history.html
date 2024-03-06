@@ -2,9 +2,9 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Home</title>
-    <link rel="stylesheet" href="./index.css" />
-    <script src="./index.js"></script>
+    <title>History</title>
+    <link rel="stylesheet" href="./history.css" />
+    <script src="./history.js"></script>
   </head>
   <body>
     <!-- partial:index.partial.html -->
@@ -29,7 +29,7 @@
             <p id="strike-amount">0</p>
             <p id="space">&nbsp</p>
           </div>
-          <div class="header-title">Home</div>
+          <div class="header-title">History</div>
           <div id="help">
             <img
               id="img1"
@@ -39,54 +39,13 @@
             />
           </div>
         </header>
-        <div class="challenge-container">
-          <div class="challenge-card">
-            <div class="challenge-title">Daily Challenge</div>
-            <div class="challenge-detail">Do 10 Pushups</div>
-            <img
-              class="hide-on-small-only"
-              height="48px"
-              width="48px"
-              src="dumbbell.svg"
-              alt="workout"
-            />
-          </div>
-        </div>
-
-        <div id="refresh-bonus">
-          <div id="bonus">
-            <p id="bonus-text">Bonus</p>
-          </div>
-          <p>&nbsp&nbsp&nbsp&nbsp</p>
-          <div id="refresh">
-            <img
-              id="refresh-img"
-              class="hide-on-small-only"
-              src="available_updates.svg"
-              alt="refresh"
-            />
-          </div>
-        </div>
-
-        <div class="challenge-container">
-          <div id="Complete">
-            <img
-              id="img1"
-              class="hide-on-small-only"
-              src="capture.svg"
-              alt="refresh"
-            />
-            <p class="Complete-text">Complete</p>
-            <p class="Complete-text">& Share</p>
-          </div>
-        </div>
+        <div class="challenge-container"></div>
 
         <section id="product-list"></section>
 
         <nav>
-          <div class="shoppingcart">
-            <a href="history.html"
-              ><img
+          <div class="shoppingcart" id="select-section">
+            <img
                 id="img1"
                 class="hide-on-small-only"
                 src="history.svg"
@@ -96,8 +55,10 @@
             </a>
           </div>
 
-          <div class="Store" id="select-section">
-            <img
+          <div class="Store">
+            <a
+              href="index.html"
+              ><img
               id="img1"
               class="hide-on-small-only"
               src="home.svg"
