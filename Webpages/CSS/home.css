@@ -2,24 +2,31 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   height: 100vh; /* Adjust as needed */
-  margin-top: 60px;
+  margin-top: 200px;
 }
 
 .buttons {
   margin-top: 20px; /* Pushes buttons to the bottom */
 }
 .buttons .button {
+  width: 100px;
   margin: 10px;
   padding: 10px 20px; /* Padding around the button text */
   font-size: 16px; /* Font size */
-  background-color: lightblue; /* Green background color */
   color: white; /* Text color */
   border: none; /* Remove border */
   border-radius: 5px; /* Rounded corners */
   cursor: pointer; /* Cursor style */
   transition: background-color 0.3s;
+}
+
+.refresh {
+  background-color: rgb(226, 97, 97);
+}
+
+.finish {
+  background-color: rgb(21, 197, 21);
 }
 
 .main a {
@@ -28,4 +35,10 @@
 
 .main .caption {
   margin-bottom: 20px;
+  font-weight: 900;
+  font-size: 40px;
+}
+
+.main .challenge {
+  font-size: 20px;
 }

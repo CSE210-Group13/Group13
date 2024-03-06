@@ -1,3 +1,5 @@
+import { get_history_by_user } from '../javascript/db.js';
+
 class NavBar extends HTMLElement {
   constructor() {
     super();
@@ -13,12 +15,13 @@ class NavBar extends HTMLElement {
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
-                    background-color: lightblue;
+                    background-color: #F0E4F2;
                     padding: 0;
                     margin: 0;
                     height: 50px;
                     width: 100%;
                     font-family: Arial, sans-serif;
+                    border-bottom: solid thin grey;
                 }
                 
                 .nav-left {
@@ -41,7 +44,7 @@ class NavBar extends HTMLElement {
                 }
                 
                 .nav-bar .count {
-                    margin: 0 4px;
+                    margin: 0 5px;
                 }
                 
                 .nav-bar img {
@@ -51,14 +54,16 @@ class NavBar extends HTMLElement {
             </style>
             <div class="nav-bar">
                 <div class="nav-left">
-                    <a href="home.html">Home</a>
-                    <a class="stars count">5</a>
+                    <a href="home.html">
+                      <img src="../images/home.svg" alt=Home SVG Image">
+                    </a>
+                    <a class="stars count">1</a>
                     <img src="../images/stars.svg" alt="Stars SVG Image">
                 </div>
                 <div class="nav-right">
-                    <a class="strikes count">4</a>
+                    <a class="strikes count">1</a>
                     <img src="../images/flame-icon.svg" alt="Flame Icon SVG Image">
-                    <a href="history.html">History</a>
+                    <a id="history" href="history.html">History</a>
                     <a class="login-signup" href="login.html">Login/Signup</a>
                 </div>
             </div>
@@ -109,7 +114,20 @@ class NavBar extends HTMLElement {
     // todo connect to database to do proper logic
     this.set_stars(7); 
     this.set_strikes(8); 
-  }
-}
 
-customElements.define("nav-bar", NavBar);
+    const historyButton = this.shadowRoot.getElementById('history');
+
+    // Attach an event listener to the history button
+        historyButton.addEventListener('click', (event) => {
+          event.preventDefault(); // Prevent the default link behavior
+          console.log('History button clicked');
+          window.location.href = 'history.html';
+
+          
+        });
+      }
+
+      
+    }
+
+    customElements.define("nav-bar", NavBar);
