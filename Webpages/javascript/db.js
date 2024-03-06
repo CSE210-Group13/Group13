@@ -60,14 +60,6 @@ export async function get_current_streak_stars() {
   
     let currentStreak = 0;
     let currentDate = new Date();
-    let currentTimestamp = currentDate.getTime();
-    let dayInterval = 24*60*60*1000;
-    let oneDayBefore = currentDate - dayInterval;
-  
-    let uniqueDates = new Set(); 
-
-  
-    let expectedDateString = currentDate.toDateString();
   
     let mostRecentChallenge = new Date(challenges[0].timestamp);
     let challengeDoneToday = currentDate.getMonth() === mostRecentChallenge.getMonth() &&
