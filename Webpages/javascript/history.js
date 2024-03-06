@@ -2,7 +2,7 @@ import { get_history_by_user } from './db.js';
 export const LOCAL_STORAGE_USER_KEY = 'uuid';
 
 async function populateHistory(username) {
-    username='han';
+    var username = localStorage.getItem(LOCAL_STORAGE_USER_KEY);
     const data = await get_history_by_user(username);
 
     // Assuming data is an object or array you want to display

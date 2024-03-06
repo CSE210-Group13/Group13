@@ -76,9 +76,9 @@ refresh_button.addEventListener("click", () => {
 
 finish_button.addEventListener("click", async () => {
   if (finish_button.classList.contains("finish")) {
-    var challange_name = challange.innerHTML;
-    challange.innerHTML = "Congrats, you have finished the challenge";
-    // nav_bar_element.increment_stars();
+    var challenge_name = challenge.innerHTML;
+    challenge.innerHTML = "Congrats, you have finished the challenge";
+    nav_bar_element.increment_stars();
     // nav_bar_element.increment_strikes();
 
     finish_button.classList.remove("finish");

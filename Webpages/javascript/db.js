@@ -91,3 +91,11 @@ export async function get_current_streak() {
     return currentStreak;
   }
   
+export async function get_star() {
+    var username = localStorage.getItem(LOCAL_STORAGE_USER_KEY);
+    var challengeData = await get_history_by_user(username);
+    var challenges = Object.values(challengeData).sort((a, b) => b.timestamp - a.timestamp);
+    console.log(challenges);
+    
+    return challenges.length;
+}
