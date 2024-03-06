@@ -4,13 +4,11 @@ img {
 .challenge-containers {
     margin-top: 70px;
     display: flex;
-    flex: 1 1 auto;
     flex-direction: column;
     gap: 12px;
 }
 
 .challenge-box {
-    min-width: 0;
     margin: auto;
     display: flex;
     width: 400px;
