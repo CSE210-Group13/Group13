@@ -1,5 +1,5 @@
-const FIREBASE_SIGNUP_URL = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?';
-const FIREBASE_LOGIN_URL = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?'
+const FIREBASE_SIGNUP_URL = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp';
+const FIREBASE_LOGIN_URL = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword'
 const FIREBASE_KEY = 'AIzaSyC4iQLVT5OsrS1IufO5QZHNGyi5x1ECWj0';
 
 const LOCAL_STORAGE_USER_KEY = 'uuid';

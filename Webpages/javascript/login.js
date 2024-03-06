@@ -1,29 +1,23 @@
-import {login} from "../javascript/authen.js"
+import { login } from "../javascript/authen.js"
 const LOCAL_STORAGE_USER_KEY = 'uuid';
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     // Get the form element
-    var button = document.querySelector(".login-btn");
+    var login_form = document.getElementById("login-form");
     var username = document.getElementById("username");
-    var password = document.getElementById("password"); 
+    var password = document.getElementById("password");
     // Add submit event listener to the form
-    button.addEventListener("click", function(e) {
+    login_form.addEventListener("submit", (e) => {
         e.preventDefault(); // Prevent default form submission
-        
-        // Perform any client-side validation or other operations here
-        console.log(username.value); 
-        console.log(password.value); 
-        // Submit the form
-        submitForm();
-    });
 
-    // Function to submit the form
-    function submitForm() {
-        // Optionally, perform additional tasks before submitting the form
-        console.log("submitting login")
-        
-        localStorage.setItem(LOCAL_STORAGE_USER_KEY, username.value);
-        // Submit the form
-        form.submit();
-    }
+        // Perform any client-side validation or other operations here
+        console.log(username.value);
+        console.log(password.value);
+
+        login(username.value, password.value).then(response => { 
+            if (response.localId){
+                window.location.href = "../html/home.html";
+            }
+        });
+    });
 });

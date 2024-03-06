@@ -1,4 +1,5 @@
 import { get_history_by_user } from '../javascript/db.js';
+import { logOut } from '../javascript/authen.js';
 
 class NavBar extends HTMLElement {
   constructor() {
@@ -69,27 +70,29 @@ class NavBar extends HTMLElement {
     shadowRoot.appendChild(template.content.cloneNode(true));
 
     this.strikes_count_element = this.shadowRoot.querySelector(
-        ".nav-bar .nav-right .strikes"
-      );
+      ".nav-bar .nav-right .strikes"
+    );
     this.stars_count_element = this.shadowRoot.querySelector(
-        ".nav-bar .nav-left .stars"
-      );
+      ".nav-bar .nav-left .stars"
+    );
+
+    this.login_signup = this.shadowRoot.querySelector(".nav-right .login-signup");
   }
 
-  get_strikes_element(){
-    return this.strikes_count_element; 
+  get_strikes_element() {
+    return this.strikes_count_element;
   }
 
-  get_stars_element(){
-    return this.stars_count_element; 
+  get_stars_element() {
+    return this.stars_count_element;
   }
 
-  set_stars(num){
+  set_stars(num) {
     this.stars_count_element.innerHTML = parseInt(num);
   }
 
-  set_strikes(num){
-    this.strikes_count_element.innerHTML = parseInt(num); 
+  set_strikes(num) {
+    this.strikes_count_element.innerHTML = parseInt(num);
   }
 
   increment_strikes() {
@@ -97,34 +100,50 @@ class NavBar extends HTMLElement {
   }
 
   increment_stars() {
-    this.stars_count_element.innerHTML = parseInt(this.stars_count_element.innerHTML) + 1; 
+    this.stars_count_element.innerHTML = parseInt(this.stars_count_element.innerHTML) + 1;
   }
 
   test(num) {
     console.log("test function from nav-bar");
   }
 
+  change_login_logout() {
+    console.log(this.login_signup);
+    if (localStorage.getItem("uuid") !== null) {
+      this.login_signup.innerText = "Sign Out";
+    }
+    else {
+      console.log("navbar :: signout_versoin :: else ");
+      this.login_signup.innerText = "Login/Signup";
+      this.login_signup.href = "login.html";
+    }
+  }
   connectedCallback() {
     // This method is called when the element is inserted into the DOM
     console.log('Element connected to the DOM');
 
     // todo connect to database to do proper logic
-    this.set_stars(7); 
-    this.set_strikes(8); 
+    this.set_stars(7);
+    this.set_strikes(8);
 
     const historyButton = this.shadowRoot.getElementById('history');
 
     // Attach an event listener to the history button
-        historyButton.addEventListener('click', (event) => {
-          event.preventDefault(); // Prevent the default link behavior
-          console.log('History button clicked');
-          window.location.href = 'history.html';
+    historyButton.addEventListener('click', (event) => {
+      event.preventDefault(); // Prevent the default link behavior
+      console.log('History button clicked');
+      window.location.href = 'history.html';
+    });
 
-          
-        });
+    this.change_login_logout();
+    this.login_signup.addEventListener('click', (e) => {
+      if (localStorage.getItem("uuid") !== null) {
+        e.preventDefault();
+        logOut();
+        this.change_login_logout();
       }
+    })
+  }
+}
 
-      
-    }
-
-    customElements.define("nav-bar", NavBar);
+customElements.define("nav-bar", NavBar);

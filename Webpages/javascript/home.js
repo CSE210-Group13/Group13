@@ -23,6 +23,9 @@ const nav_bar_element = document.querySelector("nav-bar");
 // this boolena is used to first populate a random challange,
 // when home page is loaded for the first time, we should populate a random challange
 // when home page is refreshed, we should not populate another challange.
+
+// nav_bar_element.signout_version(); 
+
 localStorage.setItem("get_random_boolean", true);
 
 const challenges_arr = [
