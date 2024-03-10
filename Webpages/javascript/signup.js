@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var username = document.getElementById("username");
     var password_1 = document.getElementById("password1");
     var password_2 = document.getElementById("password2");
-    var error_messege = document.querySelector('.signup-form .error-messege');
+    var error_message = document.querySelector('.error-message');
 
     // Add submit event listener to the form
     form.addEventListener("submit", function (event) {
@@ -13,8 +13,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Perform any client-side validation or other operations here
 
-        if (password_1.value !== password_2.value) {
-            error_messege.innerText = "two passwords do not match";
+        let alphanumeric = /^[a-zA-Z0-9]*$/
+        console.log(password_1);
+        console.log(alphanumeric.test(password_1));
+        if (!alphanumeric.test(password_1.value) || !alphanumeric.test(password_2.value)){
+            error_message.innerText = "Could not signup. Passwords must be alphanumeric.";
+        }
+        else if (password_1.value !== password_2.value) {
+            error_message.innerText = "Could not signup. Passwords must match.";
         } else {
             signUp(username.value, password_1.value).then(response => {
                 if (response.localId) {
@@ -22,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
                 else if (response.error.code === 400) {
                     console.log("code 400");
-                    error_messege.innerText = response.error.message;
+                    error_message.innerText = response.error.message;
                 }
 
             })

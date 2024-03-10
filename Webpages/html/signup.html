@@ -12,22 +12,22 @@
 </head>
 
 <body>
-    <header>
+    <!-- <header>
         <nav-bar></nav-bar>
-    </header>
+    </header> -->
     
     <div class="signup-container">
         <h1>Signup</h1>
+        <a class = "error-message">Passwords must be alphanumeric and less than 30 characters</a>
         <form class="signup-form">
-            <a class = "error-messege"></a>
             <div class="input-container">
-                <input id = "username" type="text" placeholder="Username" class="rounded-input" required>
+                <input id = "username" type="text" placeholder="Email" class="rounded-input" required>
             </div>
             <div class="input-container">
-                <input id = "password1" type="password" placeholder="Password" class="rounded-input" required>
+                <input id = "password1" type="password" placeholder="Password" class="rounded-input" maxlength="30" required>
             </div>
             <div class="input-container">
-                <input id = "password2" type="password" placeholder="Confirm Password" class="rounded-input" required>
+                <input id = "password2" type="password" placeholder="Confirm Password" class="rounded-input" maxlength="30" required>
             </div> 
             <button type="submit" class="signup-btn">Sign Up</button>
         </form>
