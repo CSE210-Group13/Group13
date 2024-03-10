@@ -1,5 +1,4 @@
-import { get_history_by_user } from '../javascript/db.js';
-import { logOut } from '../javascript/authen.js';
+import { get_history_by_user, get_current_streak_stars } from '../javascript/db.js';
 
 class NavBar extends HTMLElement {
   constructor() {
@@ -49,6 +48,9 @@ class NavBar extends HTMLElement {
                   width: 75px;
                   text-align: center;
                 }
+                #current-user {
+                  margin-left: 10px; 
+                }                
             </style>
             <div class="nav-bar">
                 <div>
@@ -56,9 +58,10 @@ class NavBar extends HTMLElement {
                       <img src="../images/home.svg" alt=Home SVG Image">
                     </a>
                     <div>
-                      <a class="stars-count">1</a>
+                      <a id="stars" class="stars-count">1</a>
                       <img src="../images/stars.svg" alt="Stars SVG Image">
                     </div>
+                    <span id="current-user"></span>
                 </div>
                 <div>
                     <div>
@@ -126,8 +129,17 @@ class NavBar extends HTMLElement {
     // This method is called when the element is inserted into the DOM
 
     // todo connect to database to do proper logic
-    this.set_stars(7);
-    this.set_streaks(8);
+    (async () => {
+      try {
+        let {streak, stars} = await get_current_streak_stars();
+        this.set_stars(stars);
+        this.set_streak(streak);
+      } catch (error) {
+        // console.log('An error occurred:', error);
+        this.set_stars(0);
+        this.set_streak(0);
+      }
+    })();
 
     const historyButton = this.shadowRoot.getElementById('history');
 

@@ -2,14 +2,17 @@ import { get_history_by_user } from './db.js';
 export const LOCAL_STORAGE_USER_KEY = 'uuid';
 
 async function populateHistory(username) {
-    username='han';
+    var username = localStorage.getItem(LOCAL_STORAGE_USER_KEY);
     const data = await get_history_by_user(username);
-
+    
     // Assuming data is an object or array you want to display
     // Find the container in your HTML where you want to display the data
     const container = document.getElementById('challenge-containers');
     container.innerHTML = ''; // Clear existing contents
-
+    if (!data) {
+        container.innerHTML = "You haven't completed any challenges yet!";
+        return;
+    }
 
     let renderedChallenges = ''
 
