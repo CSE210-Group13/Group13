@@ -3,26 +3,25 @@ import { LOCAL_STORAGE_USER_KEY, finish, get_current_challenge, get_last_refresh
 
 const confetti = new JSConfetti();
 const refresh_button = document.querySelector("#refresh");
-console.log(refresh_button);
 
 const finish_button = document.querySelector("#finish");
-console.log(finish_button);
 
 const challenge = document.querySelector(".challenge");
-console.log(challenge);
-console.log(challenge.innerHTML);
 
 const nav_bar_element = document.querySelector("nav-bar");
 // console.log(nav_bar_element);
-// nav_bar_element.increment_strikes();
+// nav_bar_element.increment_streaks();
 // console.log(nav_bar_element.get_stars_element());
 
 // nav_bar_element.set_stars('100');
 // nav_bar_element.increment_stars();
 
-// this boolena is used to first populate a random challenge,
-// when home page is loaded for the first time, we should populate a random challenge
-// when home page is refreshed, we should not populate another challenge.
+// this boolena is used to first populate a random challange,
+// when home page is loaded for the first time, we should populate a random challange
+// when home page is refreshed, we should not populate another challange.
+
+// nav_bar_element.signout_version(); 
+
 localStorage.setItem("get_random_boolean", true);
 
 const challenges_arr = [
@@ -38,7 +37,6 @@ const challenges_arr = [
   "Do 20 lunges",
 ];
 
-console.log(challenges_arr);
 
 function get_random_challenge() {
   const random_index = Math.floor(Math.random() * challenges_arr.length);
@@ -98,11 +96,12 @@ refresh_button.addEventListener("click", async () => {
   await update_current_challenge_refresh(username, challenge.innerHTML)
 });
 
-finish_button.addEventListener("click", () => {
+finish_button.addEventListener("click", async () => {
   if (finish_button.classList.contains("finish")) {
+    var challenge_name = challenge.innerHTML;
     challenge.innerHTML = "Congrats, you have finished the challenge";
     nav_bar_element.increment_stars();
-    nav_bar_element.increment_strikes();
+    // nav_bar_element.increment_streaks();
 
     finish_button.classList.remove("finish");
     

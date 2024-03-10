@@ -7,23 +7,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../CSS/login.css">
     <script src="../javascript/login.js" type="module"></script>
-    <script src="../components/nav-bar.js" type = "module"></script>
+    <script src="../components/nav-bar.js" type="module"></script>
     <title>Document</title>
 </head>
 
 <body>
-    <header>
+    <!-- <header>
         <nav-bar></nav-bar>
-    </header>
+    </header> -->
     
     <div class="login-container">
         <h1>Welcome</h1>
-        <form id="login-form" action="#" method="post" class="login-form">
+        <form id="login-form" class="login-form">
             <div class="input-container">
                 <input id="username" type="text" placeholder="Username" class="rounded-input" required>
             </div>
             <div class="input-container">
-                <input type="password" placeholder="Password" class="rounded-input" required>
+                <input id="password" type="password" placeholder="Password" class="rounded-input" required>
             </div>
             <button type="submit" class="login-btn">Login</button>
         </form>
