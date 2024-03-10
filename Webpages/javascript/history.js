@@ -10,7 +10,25 @@ async function populateHistory(username) {
     const container = document.getElementById('challenge-containers');
     container.innerHTML = ''; // Clear existing contents
     if (!data) {
-        container.innerHTML = "You haven't completed any challenges yet!";
+        container.innerHTML = 
+        `<style>
+        .no-history-title {
+            font-size: 24px;
+            font-weight: 900;
+            text-align: center;
+        }
+
+        .no-history-text {
+            text-align: center;
+        }
+
+        </style>
+        <div class="no-history-title">
+            History Unavailable
+        </div>
+        <div class="no-history-text">
+            You haven't completed any challenges yet!
+        </div>`
         return;
     }
 

@@ -69,12 +69,9 @@ async function populate_challenge() {
   username = 'han';
   let last_refresh = await get_last_refresh(username);
   let current_challenge = await get_current_challenge(username);
-  console.log(last_refresh);
-  console.log(current_challenge);
   let today_refresh_time = new Date();
   today_refresh_time.setHours(2,0,0,0);
   today_refresh_time = today_refresh_time.getTime();
-  console.log("today_refresh_time: " + today_refresh_time);
   let challenge_text = document.getElementById('challenge_text');
 
   if (last_refresh > today_refresh_time){
@@ -94,14 +91,15 @@ refresh_button.addEventListener("click", async () => {
   let username = localStorage.getItem(LOCAL_STORAGE_USER_KEY);
   username = 'han';
   await update_current_challenge_refresh(username, challenge.innerHTML)
+  finish_button.classList.remove("more");
+  finish_button.classList.add("finish");
+  finish_button.innerHTML = "Finish";
 });
 
 finish_button.addEventListener("click", async () => {
   if (finish_button.classList.contains("finish")) {
     var challenge_name = challenge.innerHTML;
     challenge.innerHTML = "Congrats, you have finished the challenge";
-    nav_bar_element.increment_stars();
-    // nav_bar_element.increment_streaks();
 
     finish_button.classList.remove("finish");
     
@@ -109,17 +107,18 @@ finish_button.addEventListener("click", async () => {
 
     finish_button.classList.add("more");
     finish_button.innerHTML = "More";
-    console.log(finish_button.classList);
     confetti.addConfetti(); 
     
   } else if (finish_button.classList.contains("more")) {
-    const random_challenge = get_random_challenge();
-    challenge.innerHTML = random_challenge.challenge;
+    /* Ideally we would get a challenge different from the 
+     * previous, but I'm not sure how i want to oimplement this
+     * so I haven't yet.
+     */
+    challenge.innerHTML = get_different_challenge();
 
     finish_button.classList.remove("more");
     finish_button.classList.add("finish");
     finish_button.innerHTML = "Finish";
-    console.log(finish_button.classList);
   }
 });
 

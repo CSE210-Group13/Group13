@@ -4,7 +4,10 @@ const nav_bar_element = document.querySelector("nav-bar");
 
 
 /*
- * Create new entry in user/challenges database with name of challenge and timestamp of completion
+ * Create new entry in user/challenges database with name of 
+ * challenge and timestamp of completion and set the 
+ * corresponding stars and streak
+
  */
 export async function finish(challenge_name) {
     // localStorage.setItem(LOCAL_STORAGE_USER_KEY, "han");
@@ -23,7 +26,7 @@ export async function finish(challenge_name) {
     })
       .then(response => response.json())
       .then(data => {
-        console.log('Success:', data);
+        //console.log('Success:', data);
       })
       .catch((error) => {
         console.error('Error:', error);
@@ -31,8 +34,6 @@ export async function finish(challenge_name) {
 
       try {
         let {streak, stars} = await get_current_streak_stars();
-        console.log('Current streak is:', streak);
-        console.log('Current stars is ', stars);
         nav_bar_element.set_streak(streak);
         nav_bar_element.set_stars(stars);
       } catch (error) {
@@ -133,7 +134,7 @@ export async function update_current_challenge_refresh(username, challenge_text)
   })
     .then(response => response.json())
     .then(data => {
-      console.log('Success:', data);
+      //console.log('Success:', data);
     })
     .catch((error) => {
       console.error('Error:', error);
@@ -143,6 +144,13 @@ export async function get_current_streak_stars() {
     var username = localStorage.getItem(LOCAL_STORAGE_USER_KEY);
     var challengeData = await get_history_by_user(username);
     var challenges = Object.values(challengeData).sort((a, b) => b.timestamp - a.timestamp);
+
+    if (challenges.length == 0) {
+      return {
+        streak: 0,
+        stars: 0,
+      };
+    }
   
     let currentStreak = 0;
     let currentDate = new Date();
@@ -168,6 +176,6 @@ export async function get_current_streak_stars() {
     return {
       streak: currentStreak,
       stars: challenges.length,
-    }
+    };
   }
   
