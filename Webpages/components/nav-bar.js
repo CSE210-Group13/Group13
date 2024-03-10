@@ -98,7 +98,7 @@ class NavBar extends HTMLElement {
     this.stars_count_element.innerHTML = parseInt(num);
   }
 
-  set_streaks(num) {
+  set_streak(num) {
     this.streaks_count_element.innerHTML = parseInt(num);
   }
 
