@@ -46,5 +46,5 @@ export async function login(email, password) {
 
 export async function logOut() {
     localStorage.removeItem(LOCAL_STORAGE_USER_KEY); 
-    window.location.hred = '../html/home.html';
+    window.location.href = '../html/login.html';
 }

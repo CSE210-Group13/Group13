@@ -3,18 +3,14 @@ import { finish } from "./db.js";
 
 const confetti = new JSConfetti();
 const refresh_button = document.querySelector("#refresh");
-console.log(refresh_button);
 
 const finish_button = document.querySelector("#finish");
-console.log(finish_button);
 
 const challenge = document.querySelector(".challenge");
-console.log(challenge);
-console.log(challenge.innerHTML);
 
 const nav_bar_element = document.querySelector("nav-bar");
 // console.log(nav_bar_element);
-// nav_bar_element.increment_strikes();
+// nav_bar_element.increment_streaks();
 // console.log(nav_bar_element.get_stars_element());
 
 // nav_bar_element.set_stars('100');
@@ -41,7 +37,6 @@ const challenges_arr = [
   "Do 20 lunges",
 ];
 
-console.log(challenges_arr);
 
 function get_random_challenge() {
   const random_index = Math.floor(Math.random() * challenges_arr.length);
@@ -80,7 +75,7 @@ finish_button.addEventListener("click", () => {
   if (finish_button.classList.contains("finish")) {
     challenge.innerHTML = "Congrats, you have finished the challenge";
     nav_bar_element.increment_stars();
-    nav_bar_element.increment_strikes();
+    nav_bar_element.increment_streaks();
 
     finish_button.classList.remove("finish");
     

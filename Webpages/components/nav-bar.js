@@ -24,46 +24,47 @@ class NavBar extends HTMLElement {
                     font-family: Arial, sans-serif;
                     border-bottom: solid thin grey;
                 }
-                
-                .nav-left {
-                    display: flex;
-                    align-items: center;
-                    justify-content: flex-start;
+
+                .nav-bar div {
+                  margin: 0 10px;
+                  display: flex;
+                  gap: 10px;
+                  align-items: center;
                 }
-                
-                .nav-right {
-                    display: flex;
-                    align-items: center;
-                    margin-left: auto;
-                    justify-content: flex-end;
+
+                .nav-bar div div {
+                  gap: 5px;
                 }
-                
-                .nav-bar a {
-                    text-decoration: none;
-                    color: black;
-                    margin: 0 10px;
+
+                a {
+                  text-decoration: none;
+                  color: black;
                 }
-                
-                .nav-bar .count {
-                    margin: 0 5px;
+
+                img {
+                  height: 30px;
                 }
-                
-                .nav-bar img {
-                    height: 30px;
-                    width: auto;
+
+                .login-signup {
+                  width: 75px;
+                  text-align: center;
                 }
             </style>
             <div class="nav-bar">
-                <div class="nav-left">
+                <div>
                     <a href="home.html">
                       <img src="../images/home.svg" alt=Home SVG Image">
                     </a>
-                    <a class="stars count">1</a>
-                    <img src="../images/stars.svg" alt="Stars SVG Image">
+                    <div>
+                      <a class="stars-count">1</a>
+                      <img src="../images/stars.svg" alt="Stars SVG Image">
+                    </div>
                 </div>
-                <div class="nav-right">
-                    <a class="strikes count">1</a>
-                    <img src="../images/flame-icon.svg" alt="Flame Icon SVG Image">
+                <div>
+                    <div>
+                      <a class="streak-count">1</a>
+                      <img src="../images/flame-icon.svg" alt="Flame Icon SVG Image">
+                    </div>
                     <a id="history" href="history.html">History</a>
                     <a class="login-signup" href="login.html">Login/Signup</a>
                 </div>
@@ -72,18 +73,18 @@ class NavBar extends HTMLElement {
     const shadowRoot = this.attachShadow({ mode: "open" });
     shadowRoot.appendChild(template.content.cloneNode(true));
 
-    this.strikes_count_element = this.shadowRoot.querySelector(
-      ".nav-bar .nav-right .strikes"
+    this.streaks_count_element = this.shadowRoot.querySelector(
+      ".streak-count"
     );
     this.stars_count_element = this.shadowRoot.querySelector(
-      ".nav-bar .nav-left .stars"
+      ".stars-count"
     );
 
-    this.login_signup = this.shadowRoot.querySelector(".nav-right .login-signup");
+    this.login_signup = this.shadowRoot.querySelector(".login-signup");
   }
 
-  get_strikes_element() {
-    return this.strikes_count_element;
+  get_streaks_element() {
+    return this.streaks_count_element;
   }
 
   get_stars_element() {
@@ -94,40 +95,39 @@ class NavBar extends HTMLElement {
     this.stars_count_element.innerHTML = parseInt(num);
   }
 
-  set_strikes(num) {
-    this.strikes_count_element.innerHTML = parseInt(num);
+  set_streaks(num) {
+    this.streaks_count_element.innerHTML = parseInt(num);
   }
 
-  increment_strikes() {
-    this.strikes_count_element.innerHTML = parseInt(this.strikes_count_element.innerHTML) + 1;
+  increment_streaks() {
+    this.streaks_count_element.innerHTML = parseInt(this.streaks_count_element.innerHTML) + 1;
   }
 
   increment_stars() {
     this.stars_count_element.innerHTML = parseInt(this.stars_count_element.innerHTML) + 1;
   }
 
-  test(num) {
-    console.log("test function from nav-bar");
-  }
-
   change_login_logout() {
-    console.log(this.login_signup);
     if (localStorage.getItem("uuid") !== null) {
       this.login_signup.innerText = "Sign Out";
     }
     else {
-      console.log("navbar :: signout_versoin :: else ");
-      this.login_signup.innerText = "Login/Signup";
-      this.login_signup.href = "login.html";
+      if (window.location.href.endsWith('login.html')) {
+        this.login_signup.innerText = "Signup";
+        this.login_signup.href = "signup.html";
+      }
+      else {
+        this.login_signup.innerText = "Login";
+        this.login_signup.href = "login.html";
+      }
     }
   }
   connectedCallback() {
     // This method is called when the element is inserted into the DOM
-    console.log('Element connected to the DOM');
 
     // todo connect to database to do proper logic
     this.set_stars(7);
-    this.set_strikes(8);
+    this.set_streaks(8);
 
     const historyButton = this.shadowRoot.getElementById('history');
 
