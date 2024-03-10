@@ -22,7 +22,6 @@ const nav_bar_element = document.querySelector("nav-bar");
 
 // nav_bar_element.signout_version(); 
 
-localStorage.setItem("get_random_boolean", true);
 
 const challenges_arr = [
   "Drink 8 cups of water throughout the day",
@@ -66,7 +65,6 @@ function get_different_challenge() {
  */
 async function populate_challenge() {
   let username = localStorage.getItem(LOCAL_STORAGE_USER_KEY);
-  username = 'han';
   let last_refresh = await get_last_refresh(username);
   let current_challenge = await get_current_challenge(username);
   let today_refresh_time = new Date();
@@ -89,7 +87,6 @@ refresh_button.addEventListener("click", async () => {
   const refreshed_challenge = get_different_challenge();
   challenge.innerHTML = refreshed_challenge;
   let username = localStorage.getItem(LOCAL_STORAGE_USER_KEY);
-  username = 'han';
   await update_current_challenge_refresh(username, challenge.innerHTML)
   finish_button.classList.remove("more");
   finish_button.classList.add("finish");
@@ -99,6 +96,7 @@ refresh_button.addEventListener("click", async () => {
 finish_button.addEventListener("click", async () => {
   if (finish_button.classList.contains("finish")) {
     var challenge_name = challenge.innerHTML;
+    let new_challenge = get_different_challenge();
     challenge.innerHTML = "Congrats, you have finished the challenge";
 
     finish_button.classList.remove("finish");
@@ -108,6 +106,8 @@ finish_button.addEventListener("click", async () => {
     finish_button.classList.add("more");
     finish_button.innerHTML = "More";
     confetti.addConfetti(); 
+    let username = localStorage.getItem(LOCAL_STORAGE_USER_KEY);
+    await update_current_challenge_refresh(username, new_challenge);
     
   } else if (finish_button.classList.contains("more")) {
     /* Ideally we would get a challenge different from the 
@@ -115,6 +115,8 @@ finish_button.addEventListener("click", async () => {
      * so I haven't yet.
      */
     challenge.innerHTML = get_different_challenge();
+    let username = localStorage.getItem(LOCAL_STORAGE_USER_KEY);
+    await update_current_challenge_refresh(username, challenge.innerHTML);
 
     finish_button.classList.remove("more");
     finish_button.classList.add("finish");
@@ -128,7 +130,14 @@ we can choose a new random current_challenge
 Otherwise, the user has already asked for a new challenge
 and we should keep displaying the current_challenge
 */
-window.onload = populate_challenge;
+window.onload = (() => {
+  if (localStorage.getItem(LOCAL_STORAGE_USER_KEY) == null) {
+    window.location.href = "../html/login.html";
+  }
+  else{
+    populate_challenge();
+  }})();
+
 // test on the go:
 // const randomChallenge = get_random_challenge();
 // console.log("Random challenge:", randomChallenge);

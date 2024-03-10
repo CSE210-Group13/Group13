@@ -12,15 +12,11 @@ document.addEventListener("DOMContentLoaded", function () {
         event.preventDefault(); // Prevent default form submission
 
         // Perform any client-side validation or other operations here
-        console.log(username.value);
-        console.log(password_1.value);
-        console.log(password_2.value);
 
         if (password_1.value !== password_2.value) {
             error_messege.innerText = "two passwords do not match";
         } else {
             signUp(username.value, password_1.value).then(response => {
-                console.log(response);
                 if (response.localId) {
                     window.location = "../html/home.html";
                 }

@@ -11,8 +11,6 @@ document.addEventListener("DOMContentLoaded", function () {
         e.preventDefault(); // Prevent default form submission
 
         // Perform any client-side validation or other operations here
-        console.log(username.value);
-        console.log(password.value);
 
         login(username.value, password.value).then(response => { 
             if (response.localId){
