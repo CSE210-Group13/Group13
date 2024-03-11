@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Perform any client-side validation or other operations here
 
         login(username.value, password.value).then(response => { 
-            if (!response.ok) {
+            if (!response.localId) {
                 error_msg.innerText = "Login incorrect";
             }
             else {

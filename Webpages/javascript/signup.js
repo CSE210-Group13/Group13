@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         else {
             signUp(username.value, password_1.value).then(response => {
-                if (!response.ok) {
+                if (!response.localId) {
                     if (response.error.message == "INVALID_EMAIL") {
                         error_message.innerText = "Invalid email. \nPlease input a valid email.";
                     }

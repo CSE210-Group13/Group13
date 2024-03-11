@@ -34,7 +34,9 @@ export async function login(email, password) {
     const url = `${FIREBASE_LOGIN_URL}?key=${FIREBASE_KEY}`;
     const body = { email, password, returnSecureKey: true };
 
-    const response = await postData(url, body);
+    const response = await postData(url, body)
+    console.log(response);
+
     return response;
 }
 
