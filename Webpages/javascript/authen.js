@@ -27,9 +27,6 @@ export async function signUp(email, password) {
     const body = { email, password, returnSecureKey: true };
 
     const response = await postData(url, body);
-    if (response.localId) {
-        localStorage.setItem(LOCAL_STORAGE_USER_KEY, response.localId);
-    }
     return response;
 }
 
@@ -38,9 +35,6 @@ export async function login(email, password) {
     const body = { email, password, returnSecureKey: true };
 
     const response = await postData(url, body);
-    if (response.localId) {
-        localStorage.setItem(LOCAL_STORAGE_USER_KEY, response.localId);
-    }
     return response;
 }
 

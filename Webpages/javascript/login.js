@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var login_form = document.getElementById("login-form");
     var username = document.getElementById("username");
     var password = document.getElementById("password");
+    let error_msg = document.querySelector('.error-message');
     // Add submit event listener to the form
     login_form.addEventListener("submit", (e) => {
         e.preventDefault(); // Prevent default form submission
@@ -13,7 +14,11 @@ document.addEventListener("DOMContentLoaded", function () {
         // Perform any client-side validation or other operations here
 
         login(username.value, password.value).then(response => { 
-            if (response.localId){
+            if (!response.ok) {
+                error_msg.innerText = "Login incorrect";
+            }
+            else {
+                localStorage.setItem(LOCAL_STORAGE_USER_KEY, response.localId);
                 window.location.href = "../html/home.html";
             }
         });
