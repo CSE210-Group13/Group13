@@ -27,9 +27,6 @@ export async function signUp(email, password) {
     const body = { email, password, returnSecureKey: true };
 
     const response = await postData(url, body);
-    if (response.localId) {
-        localStorage.setItem(LOCAL_STORAGE_USER_KEY, response.localId);
-    }
     return response;
 }
 
@@ -37,10 +34,9 @@ export async function login(email, password) {
     const url = `${FIREBASE_LOGIN_URL}?key=${FIREBASE_KEY}`;
     const body = { email, password, returnSecureKey: true };
 
-    const response = await postData(url, body);
-    if (response.localId) {
-        localStorage.setItem(LOCAL_STORAGE_USER_KEY, response.localId);
-    }
+    const response = await postData(url, body)
+    console.log(response);
+
     return response;
 }
 

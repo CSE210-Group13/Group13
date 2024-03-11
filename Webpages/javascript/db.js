@@ -122,6 +122,7 @@ export async function get_last_refresh(username) {
  */
 export async function update_current_challenge_refresh(username, challenge_text) {
   let url = 'https://cse210-group13-default-rtdb.firebaseio.com/users/' + username + '.json';
+  let refresh_time = Date.now();
   fetch(url, {
     method: 'PATCH', // or 'PUT'
     headers: {
@@ -129,7 +130,7 @@ export async function update_current_challenge_refresh(username, challenge_text)
     },
     body: JSON.stringify({
       current_challenge: challenge_text,
-      last_refresh: Date.now(),
+      last_refresh: refresh_time,
     }),
   })
     .then(response => response.json())

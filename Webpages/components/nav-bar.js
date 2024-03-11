@@ -1,4 +1,5 @@
-import { get_history_by_user, get_current_streak_stars } from '../javascript/db.js';
+import { get_current_streak_stars } from '../javascript/db.js';
+import { logOut } from '../javascript/authen.js';
 
 class NavBar extends HTMLElement {
   constructor() {
@@ -58,14 +59,14 @@ class NavBar extends HTMLElement {
                       <img src="../images/home.svg" alt=Home SVG Image">
                     </a>
                     <div>
-                      <a id="stars" class="stars-count">1</a>
+                      <a id="stars" class="stars-count"></a>
                       <img src="../images/stars.svg" alt="Stars SVG Image">
                     </div>
                     <span id="current-user"></span>
                 </div>
                 <div>
                     <div>
-                      <a class="streak-count">1</a>
+                      <a class="streak-count"></a>
                       <img src="../images/flame-icon.svg" alt="Flame Icon SVG Image">
                     </div>
                     <a id="history" href="history.html">History</a>
@@ -146,7 +147,6 @@ class NavBar extends HTMLElement {
     // Attach an event listener to the history button
     historyButton.addEventListener('click', (event) => {
       event.preventDefault(); // Prevent the default link behavior
-      console.log('History button clicked');
       window.location.href = 'history.html';
     });
 
