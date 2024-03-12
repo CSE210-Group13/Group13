@@ -1,0 +1,30 @@
+name: CI
+
+env:
+  GITHUB_PR_NUMBER: ${{github.event.pull_request.number}}
+
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2  
+
+    - name: Install fresh npm packages
+      run: npm install
+  
+    - name: Set up Chromium
+      run: node node_modules/puppeteer/install.js
+
+    - name: Run tests
+      run: npm run test-e2e
