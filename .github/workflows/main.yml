@@ -22,9 +22,6 @@ jobs:
 
     - name: Install fresh npm packages
       run: npm install
-  
-    - name: Set up Chromium
-      run: node node_modules/puppeteer/install.js
 
     - name: Run tests
       run: npm run test-e2e
