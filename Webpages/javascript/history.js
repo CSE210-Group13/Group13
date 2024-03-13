@@ -36,7 +36,13 @@ async function populateHistory(username) {
 
     Object.keys(data).forEach(key => {
         let item = data[key]
-        let renderedChallenge =`<div class="challenge-box"><div class="date">${convertDate(item.timestamp)}</div><div class="challenge">${item.name}</div><div class="stars">${1/*item.stars*/} <img src="../images/stars1.svg"</div></div></div>`; 
+        let renderedChallenge =
+        `<div class="challenge-box">
+        <div class="date">${convertDate(item.timestamp)}</div>
+        <div class="challenge">${item.name}</div>
+        <div class="stars">${1/*item.stars*/} <img src="../images/stars1.svg"></div>
+        </div>
+        </div>`; 
         renderedChallenges = renderedChallenge.concat(renderedChallenges);
     })
     container.innerHTML = renderedChallenges;

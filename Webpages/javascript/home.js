@@ -36,13 +36,19 @@ const challenges_arr = [
   "Do 20 lunges",
 ];
 
-
+/**
+ * Randomly picks challenge from above challenge array
+ */
 function get_random_challenge() {
   const random_index = Math.floor(Math.random() * challenges_arr.length);
   const random_challenge = challenges_arr[random_index];
   return { index: random_index, challenge: random_challenge };
 }
 
+/**
+ * Continues picking random challenges until it gets one with 
+ * different challenge text that current
+ */
 function get_different_challenge() {
   let cur_challenge = challenge.innerHTML;
   let index = challenges_arr.indexOf(cur_challenge);
@@ -58,7 +64,7 @@ function get_different_challenge() {
 /*
  * Called when page loads
  * Gets current_challenge and last_refresh and checks if last_refresh is outdated
- * last_refresh is outdated if before 2am on current day, as that is when
+ * last_refresh is outdated if before midnight on current day, as that is when
  * all challenges should refresh
  * if not outdated, simply set challenge text to current_challenge
  * if outdated, get new challenge and update database to reflect
@@ -68,7 +74,7 @@ async function populate_challenge() {
   let last_refresh = await get_last_refresh(username);
   let current_challenge = await get_current_challenge(username);
   let today_refresh_time = new Date();
-  today_refresh_time.setHours(2,0,0,0);
+  today_refresh_time.setHours(0,0,0,0);
   today_refresh_time = today_refresh_time.getTime();
   let challenge_text = document.getElementById('challenge_text');
 
@@ -82,7 +88,10 @@ async function populate_challenge() {
 }
 
 
-
+/** 
+ * on Refresh, gets different challenge and updates 
+ * challenge refresh timer
+ */
 refresh_button.addEventListener("click", async () => {
   const refreshed_challenge = get_different_challenge();
   challenge.innerHTML = refreshed_challenge;
@@ -93,6 +102,11 @@ refresh_button.addEventListener("click", async () => {
   finish_button.innerHTML = "Finish";
 });
 
+
+/** 
+ * On finish, gets different challenge, adds to challenge
+ * history, and updates challenge refresh
+ */
 finish_button.addEventListener("click", async () => {
   if (finish_button.classList.contains("finish")) {
     var challenge_name = challenge.innerHTML;

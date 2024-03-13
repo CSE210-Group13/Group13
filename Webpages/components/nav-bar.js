@@ -69,6 +69,9 @@ class NavBar extends HTMLElement {
                       <a class="streak-count"></a>
                       <img src="../images/flame-icon.svg" alt="Flame Icon SVG Image">
                     </div>
+                    <a id="friends" href="friends.html">
+                    <img src="../images/person.svg" alt="Person Image">
+                    </a>
                     <a id="history" href="history.html">History</a>
                     <a class="login-signup" href="login.html">Login/Signup</a>
                 </div>

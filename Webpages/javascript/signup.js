@@ -1,7 +1,13 @@
 import { signUp } from "../javascript/authen.js";
+import { create_user_email } from "./db.js";
 const LOCAL_STORAGE_USER_KEY = 'uuid';
 
 
+/** 
+ * Does some input checking 
+ * (alphanumeric, passwords same, password lengths appropriate) 
+ * then attempts to signup using authen.js
+ */
 document.addEventListener("DOMContentLoaded", function () {
     // Get the form element
     var form = document.querySelector(".signup-form");
@@ -27,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
             error_message.innerText = "Could not signup. \nPasswords must be at least 6 characters";
         }
         else {
-            signUp(username.value, password_1.value).then(response => {
+            signUp(username.value, password_1.value).then(async response => {
                 if (!response.localId) {
                     if (response.error.message == "INVALID_EMAIL") {
                         error_message.innerText = "Invalid email. \nPlease input a valid email.";
@@ -41,6 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
                 else {
                     localStorage.setItem(LOCAL_STORAGE_USER_KEY, response.localId);
+                    await create_user_email(username.value);
                     window.location = "../html/home.html";
                 }
             })
