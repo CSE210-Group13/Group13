@@ -163,8 +163,8 @@ describe("sign up already exist account", () => {
       );
     });
 
-    const screenshotPath = "./screenshot.png";
-    await page.screenshot({ path: screenshotPath });
+    // const screenshotPath = "./screenshot.png";
+    // await page.screenshot({ path: screenshotPath });
 
     const text = await page.evaluate(() => {
       const e = document.querySelector("a.error-message");
