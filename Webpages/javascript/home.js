@@ -58,7 +58,7 @@ function get_different_challenge() {
 /*
  * Called when page loads
  * Gets current_challenge and last_refresh and checks if last_refresh is outdated
- * last_refresh is outdated if before 2am on current day, as that is when
+ * last_refresh is outdated if before midnight on current day, as that is when
  * all challenges should refresh
  * if not outdated, simply set challenge text to current_challenge
  * if outdated, get new challenge and update database to reflect
@@ -68,7 +68,7 @@ async function populate_challenge() {
   let last_refresh = await get_last_refresh(username);
   let current_challenge = await get_current_challenge(username);
   let today_refresh_time = new Date();
-  today_refresh_time.setHours(2,0,0,0);
+  today_refresh_time.setHours(0,0,0,0);
   today_refresh_time = today_refresh_time.getTime();
   let challenge_text = document.getElementById('challenge_text');
 

@@ -5,18 +5,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="../components/nav-bar.js" type = "module"></script>
-    <link rel="stylesheet", href="../CSS/history.CSS">
-    <script src="../javascript/history.js" type="module"></script>
+    <link rel="stylesheet", href="../CSS/friends.css">
+    <script src="../javascript/friends.js" type="module"></script>
     <title>Friends</title>
 </head>
 <body>
+    <link rel="icon"href="../images/favicon.ico">
     <header>
         <nav-bar></nav-bar>
     </header>
     <div class="friends_activity_container">
         <div class="friends_container">
+            <form id="friend_request_form">
+                <label for="friend_email">Friend Request</label>
+                <input type="text" id="friend_email" name="friend_email" placeholder="Email" required>
+                <button type="submit">Request</button>
+            </form>
+            <div class="requests_box" id="requests_box">
+            </div>
+            <div id="friends_box_container"></div>
         </div>
-        <div class="activity_container"></div>
+        <div class="activity_container" id="activity_container">
+        </div>
     </div>
 
 

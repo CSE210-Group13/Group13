@@ -1,0 +1,131 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height:100%;
+}
+.friends_activity_container {
+    margin-top: 50px;
+    display: flex;
+    height: 100%;
+}
+
+.friends_container {
+    width: 25%;
+    height: 100%;
+    border-right: solid thin grey;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    gap: 8px;
+}
+
+.friend_box {
+    height: 25;
+    display: flex;
+    justify-content: space-between;
+}
+
+.person {
+    display: flex;
+    justify-content: center;
+}
+
+.star_count {
+    display: flex;
+    justify-content: center;
+}
+
+.activity_container {
+    width: 50%;
+    border: black;
+}
+
+img {
+    height: 20px;
+}
+/*
+ * Styling for Friend Request form
+ */
+#friend_request_form label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+#friend_request_form button {
+    padding: 2px 4px;
+    border: solid thin grey;
+    background-color: #F0E4F2;
+    color: black;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+ 
+
+/*
+ * Styling for Friend Requests
+ */
+ .requests_box {
+    display: flex;
+    flex-direction: column;
+ }
+
+ .request {
+    height: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+ }
+
+ .request_left {
+    display: flex;
+    justify-content: center;
+ }
+/*
+ * styling for activity container
+*/
+.activity_container {
+    display: flex;
+    flex-direction: column;
+    padding-top: 10px;
+}
+.name {
+    padding-left: 8px;
+    margin-bottom: 8px;
+}
+.challenge-box {
+    align-self: center;
+    display: flex;
+    width: 400px;
+    min-height: 50px;
+    border: solid 2px #9a40aa;
+    justify-content: space-between;
+    background-color: #F0E4F2;
+    border-radius: 10px;
+    margin-bottom: 16px;
+}
+
+.date {
+    display: flex;
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+.challenge {
+    display: flex;
+    align-items: center;
+}
+
+.stars {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.stars img {
+    margin-bottom: 4px;
+}
