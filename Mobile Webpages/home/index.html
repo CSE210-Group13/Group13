@@ -54,7 +54,7 @@
         </div>
 
         <div id="refresh-bonus">
-          <div id="bonus">
+          <div id="bonus" class="disabled">
             <p id="bonus-text">Bonus</p>
           </div>
           <p>&nbsp&nbsp&nbsp&nbsp</p>
@@ -127,6 +127,19 @@
           <div class="modal-content">
             <p>You will call Accessibility Help right away.</p>
           </div>
+        </div>
+
+        <div id="cameraModal" class="modal">
+          <div class="modal-content">
+            <video id="cameraVideo" width="400" height="300" autoplay></video>
+            <button id="captureBtn">Capture</button>
+            <button id="closeBtn">Close</button>
+          </div>
+        </div>
+
+        <div id="imageBlock" class="image-block" style="display: none">
+          <img id="capturedImage" alt="Combined Image" />
+          <button id="closeImageBtn" class="close-btn">Close</button>
         </div>
 
         <script src="script.js"></script>
