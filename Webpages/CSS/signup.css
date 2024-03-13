@@ -15,7 +15,7 @@ body {
 }
 
 .signup-container h1 {
-    margin-bottom: 60px;
+    margin-bottom: 40px;
 }
 
 .signup-form {
@@ -54,7 +54,7 @@ body {
 }
 
 .signup-btn:hover {
-    background-color: #0056b3;
+    background-color: #60106e;
 }
 
 .login-option {

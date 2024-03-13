@@ -14,6 +14,7 @@
   margin: 10px;
   padding: 10px 20px; /* Padding around the button text */
   font-size: 16px; /* Font size */
+  font-weight: 600;
   color: white; /* Text color */
   border: none; /* Remove border */
   border-radius: 5px; /* Rounded corners */

@@ -1,27 +1,26 @@
-export const LOCAL_STORAGE_USER_KEY = 'uuid';
+import { login } from "../javascript/authen.js"
+const LOCAL_STORAGE_USER_KEY = 'uuid';
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     // Get the form element
-    var form = document.getElementById("login-form");
+    var login_form = document.getElementById("login-form");
     var username = document.getElementById("username");
-
+    var password = document.getElementById("password");
+    let error_msg = document.querySelector('.error-message');
     // Add submit event listener to the form
-    form.addEventListener("submit", function(event) {
-        event.preventDefault(); // Prevent default form submission
-        
-        // Perform any client-side validation or other operations here
-        
-        // Submit the form
-        submitForm();
-    });
+    login_form.addEventListener("submit", (e) => {
+        e.preventDefault(); // Prevent default form submission
 
-    // Function to submit the form
-    function submitForm() {
-        // Optionally, perform additional tasks before submitting the form
-        console.log("submitting login")
-        
-        localStorage.setItem(LOCAL_STORAGE_USER_KEY, username.value);
-        // Submit the form
-        form.submit();
-    }
+        // Perform any client-side validation or other operations here
+
+        login(username.value, password.value).then(response => { 
+            if (!response.localId) {
+                error_msg.innerText = "Login incorrect";
+            }
+            else {
+                localStorage.setItem(LOCAL_STORAGE_USER_KEY, response.localId);
+                window.location.href = "../html/home.html";
+            }
+        });
+    });
 });
