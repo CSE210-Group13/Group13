@@ -3,6 +3,11 @@ import { create_user_email } from "./db.js";
 const LOCAL_STORAGE_USER_KEY = 'uuid';
 
 
+/** 
+ * Does some input checking 
+ * (alphanumeric, passwords same, password lengths appropriate) 
+ * then attempts to signup using authen.js
+ */
 document.addEventListener("DOMContentLoaded", function () {
     // Get the form element
     var form = document.querySelector(".signup-form");
