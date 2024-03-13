@@ -163,6 +163,9 @@ describe("sign up already exist account", () => {
       );
     });
 
+    const screenshotPath = "./screenshot.png";
+    await page.screenshot({ path: screenshotPath });
+
     const text = await page.evaluate(() => {
       const e = document.querySelector("a.error-message");
       return e.textContent;
@@ -217,35 +220,34 @@ describe("invalid email", () => {
   });
 });
 
-describe("success signup", () => {
-  let browser;
-  let page;
+// the following test case requires that backend do not have the user.
+// may fail if the user exist in the data base.
+// describe("success signup", () => {
+//   let browser;
+//   let page;
 
-  beforeAll(async () => {
-    browser = await puppeteer.launch();
-    page = await browser.newPage();
-    await page.goto(`https://${rootUrl}/webpages/html/signup.html`);
-  });
+//   beforeAll(async () => {
+//     browser = await puppeteer.launch();
+//     page = await browser.newPage();
+//     await page.goto(`https://${rootUrl}/webpages/html/signup.html`);
+//   });
 
-  afterAll(async () => {
-    await browser.close();
-  });
+//   afterAll(async () => {
+//     await browser.close();
+//   });
 
-  // the following test case requires that backend do not have the user.
-  // may fail if the user exist in the data base. 
-  // it("signup with invalid email", async () => {
-  //   let home_page = `https://${rootUrl}/webpages/html/home.html`;
-  //   await page.type("#username", "test@hozhao.com");
-  //   await page.type("#password1", "1234567");
-  //   await page.type("#password2", "1234567");
-  //   await page.click("button.signup-btn");
+//   it("signup with invalid email", async () => {
+//     let home_page = `https://${rootUrl}/webpages/html/home.html`;
+//     await page.type("#username", "test@hozhao.com");
+//     await page.type("#password1", "1234567");
+//     await page.type("#password2", "1234567");
+//     await page.click("button.signup-btn");
 
-  //   //   const screenshotPath = "./screenshot.png";
-  //   //   await page.screenshot({ path: screenshotPath });
+//     //   const screenshotPath = "./screenshot.png";
+//     //   await page.screenshot({ path: screenshotPath });
 
-  //   await page.waitForNavigation();
-  //   console.log(page.url()); 
-  //   expect(page.url()).toBe(home_page);
-  // });
-
-});
+//     await page.waitForNavigation();
+//     console.log(page.url());
+//     expect(page.url()).toBe(home_page);
+//   });
+// });
