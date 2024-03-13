@@ -1,0 +1,30 @@
+{
+  "name": "challenges",
+  "version": "1.0.0",
+  "description": "app for daily challenges",
+  "main": "/Webpages/html/home.html",
+  "scripts": {
+    "test": "jest", 
+    "test-e2e": "jest Testing/E2E-Test/"
+  },
+  "jest": {
+    "preset": "jest-puppeteer",
+    "verbose": true,
+    "testPathIgnorePatterns": []
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CSE210-Group13/Group13.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CSE210-Group13/Group13/issues"
+  },
+  "homepage": "https://github.com/CSE210-Group13/Group13#readme",
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "jest-puppeteer": "^10.0.1",
+    "puppeteer": "^22.4.1"
+  }
+}
