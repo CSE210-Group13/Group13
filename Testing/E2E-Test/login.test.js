@@ -63,8 +63,8 @@ describe("login with wrong username and password", () => {
     const response = await page.waitForResponse((response) => {
       // Check if the request URL matches the expected URL
       return (
-        response.url() ===
-          "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyC4iQLVT5OsrS1IufO5QZHNGyi5x1ECWj0" &&
+        response.url().includes(
+          'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword') &&
         response.status() === 400
       );
     });
