@@ -5,6 +5,8 @@ var challenges = [
   ["Get happy time with friend", "Emotion"],
 ];
 
+let buttonClicked = false;
+
 document.addEventListener("DOMContentLoaded", function () {
   document
     .getElementById("refresh")
@@ -100,6 +102,7 @@ document.addEventListener("DOMContentLoaded", function () {
       .then(function (stream) {
         cameraVideo.srcObject = stream;
         captureBtn.addEventListener("click", capturePhoto);
+        buttonClicked = true;
       })
       .catch(function (error) {
         console.log("Error accessing the camera:", error);
@@ -107,6 +110,25 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Function to capture the photo
+  function getImageSrcByBgColor() {
+    // Get the current background color
+    const bgColor = getComputedStyle(document.documentElement)
+      .getPropertyValue("--main-bg-color")
+      .trim();
+
+    // Mapping of background colors to image sources
+    const colorToImageSrcMap = {
+      "rgba(241, 156, 121, 0.5)": "dumbbell.svg", // Example for Workout
+      "rgba(212, 224, 155, 1)": "food.svg", // Example for Food
+      "rgba(203, 223, 189, 1)": "emotion.svg", // Example for Emotion
+      "rgba(246, 224, 210, 1)": "zen.svg", // Example for Zen
+      // Add more mappings as needed
+    };
+
+    // Return the image source based on the background color
+    return colorToImageSrcMap[bgColor] || "default_image.svg"; // Provide a default image if no match is found
+  }
+
   function capturePhoto() {
     const canvas = document.createElement("canvas");
     const context = canvas.getContext("2d");
@@ -159,37 +181,43 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
     // Check if the workoutImageElement exists before setting its src property
-    
+    workoutImageElement.src = getImageSrcByBgColor();
 
-      workoutImageElement.onload = function () {
-        combinedContext.drawImage(
-          workoutImageElement,
-          combinedCanvas.width - 68,
-          canvas.height + 40,
-          48,
-          48
-        );
+    workoutImageElement.onload = function () {
+      combinedContext.drawImage(
+        workoutImageElement,
+        combinedCanvas.width - 68,
+        canvas.height + 40,
+        48,
+        48
+      );
 
-        // Convert the combined canvas to a data URL
-        const dataURL = combinedCanvas.toDataURL();
+      // Convert the combined canvas to a data URL
+      const dataURL = combinedCanvas.toDataURL();
 
-        // Close the camera view popup window
-        closeCameraModal();
+      // Close the camera view popup window
+      closeCameraModalImage();
 
-        // Display the captured image in the image block
-        const capturedImage = document.getElementById("capturedImage");
-        capturedImage.src = dataURL;
-        const imageBlock = document.getElementById("imageBlock");
-        imageBlock.style.display = "block";
-      };
-      workoutImageElement.src = workoutImageElement.src;
-    
+      // Display the captured image in the image block
+      const capturedImage = document.getElementById("capturedImage");
+      capturedImage.src = dataURL;
+      const imageBlock = document.getElementById("imageBlock");
+
+      if (imageBlock && buttonClicked) {
+        imageBlock.style.display = "block"; // Make it visible
+        buttonClicked = false;
+      }
+    };
+    workoutImageElement.src = workoutImageElement.src;
   }
 
   // Function to close the image block
   function closeImageBlock() {
     const imageBlock = document.getElementById("imageBlock");
-    imageBlock.style.display = "none";
+    if (imageBlock) {
+      // Hide the imageBlock instead of removing it
+      imageBlock.style.display = "none";
+    }
   }
 
   // Event listener for the close button
@@ -209,18 +237,27 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     cameraVideo.srcObject = null;
     captureBtn.removeEventListener("click", capturePhoto);
+    buttonClicked = false;
+  }
+  function closeCameraModalImage() {
+    cameraModal.style.display = "none";
+    const stream = cameraVideo.srcObject;
+    if (stream) {
+      const tracks = stream.getTracks();
+      tracks.forEach(function (track) {
+        track.stop();
+      });
+    }
+    cameraVideo.srcObject = null;
+    captureBtn.removeEventListener("click", capturePhoto);
+    //buttonClicked = false;
   }
 
   // Event listener for the close button
   closeBtn.addEventListener("click", closeCameraModal);
 
   // Function to close the image block
-  function closeImageBlock() {
-    const imageBlock = document.querySelector(".image-block");
-    if (imageBlock) {
-      imageBlock.remove();
-    }
-  }
+
   captureBtn.addEventListener("click", function (event) {
     event.stopPropagation(); // Prevent the event from propagating to other elements
     capturePhoto();
@@ -230,8 +267,9 @@ document.addEventListener("DOMContentLoaded", function () {
 function selectRandomChallenge() {
   var randomIndex = Math.floor(Math.random() * challenges.length);
   var [challengeDetail, category] = challenges[randomIndex];
-
+  imageBlock.style.display = "none";
   updateChallengeCard(challengeDetail, category);
+  imageBlock.style.display = "none";
 }
 function updateChallengeCard(challengeDetail, category) {
   const challengeTitle = document.querySelector(".challenge-title");
